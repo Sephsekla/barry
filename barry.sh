@@ -13,10 +13,6 @@ echo "
 
 echo -e "Welcome to the \033[1;32mBarry\033[00m technical preview!"
 
-read -p "> " prompt
-
-echo -e "\033[33mProcessing...\033[00m"
-
 retorts=( 
 	"You're a competent adult, do it yourself."
 	"No."
@@ -29,9 +25,21 @@ retorts=(
 	"I don't want to."
 	)
 
-retort=${retorts[ $RANDOM % ${#retorts[@]} ]}
+while [ true ]
+do
+	read -p $'\033[1;32mBarry\033[00m > ' prompt
 
-# We need a delay for an AI agent!
-sleep 3
+	if [[ $prompt == "exit" ]]; then
+		exit
+	fi
 
-echo "$retort"
+	echo -e "\033[33mProcessing...\033[00m"
+
+	retort=${retorts[ $RANDOM % ${#retorts[@]} ]}
+
+	# We need a delay for an AI agent!
+	sleep 3
+
+	echo "$retort"
+
+done
